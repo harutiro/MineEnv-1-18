@@ -1,0 +1,22 @@
+/IntelliJ IDEA CE.app/
+/jdk-17.0.1.jdk/
+/build/
+/.gradle/
+/run/
+/setup/
+/gradle/
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/setup-mac.command
+/setup-windows.bat
+/CREDITS.txt
+/LICENSE.txt
