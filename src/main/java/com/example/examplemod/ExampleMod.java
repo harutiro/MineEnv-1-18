@@ -1,6 +1,7 @@
 package com.example.examplemod;
 
 import com.example.examplemod.mc_01_myblock.BlockMyBlock;
+import com.example.examplemod.mc_02_fortuneblock.BlockFortune;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
@@ -33,6 +34,8 @@ public class ExampleMod {
 
     public static final Block BLOCK_MYBLOCK = new BlockMyBlock().setRegistryName(MODID, "block_myblock");
 
+    public static final Block BLOCK_FORTUNE = new BlockFortune().setRegistryName(MODID, "block_fortune");
+
 
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -54,6 +57,7 @@ public class ExampleMod {
         private static final RegisterBlockData[] registerBlocks = {
                 // ここにBlockを書いてね！
                 new RegisterBlockData(BLOCK_MYBLOCK),
+                new RegisterBlockData(BLOCK_FORTUNE),
 
         };
 
