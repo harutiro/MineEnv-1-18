@@ -2,6 +2,7 @@ package com.example.examplemod;
 
 import com.example.examplemod.mc_01_myblock.BlockMyBlock;
 import com.example.examplemod.mc_02_fortuneblock.BlockFortune;
+import com.example.examplemod.mc_03_magicstick.ItemMagicStick;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
@@ -37,6 +38,9 @@ public class ExampleMod {
     public static final Block BLOCK_FORTUNE = new BlockFortune().setRegistryName(MODID, "block_fortune");
 
 
+    // ここにItemを書いてね！
+    public static final Item ITEM_MAGIC_STICK = new ItemMagicStick().setRegistryName(MODID, "magic_stick");
+
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
@@ -63,7 +67,7 @@ public class ExampleMod {
 
         private static final Item[] registerItems = {
                 // ここにItemを書いてね！
-
+                ITEM_MAGIC_STICK,
         };
 
         @SubscribeEvent
