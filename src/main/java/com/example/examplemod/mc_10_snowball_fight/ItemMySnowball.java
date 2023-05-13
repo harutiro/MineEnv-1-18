@@ -23,7 +23,7 @@ public class ItemMySnowball extends SnowballItem {
         ItemStack itemStack = playerIn.getItemInHand(handIn);
 
         if (!playerIn.isCreative()) {
-            itemStack.setCount(itemStack.getCount() - 1);
+            itemStack.setCount(itemStack.getCount() - 2);
         }
 
         Random random = new Random();
@@ -40,9 +40,16 @@ public class ItemMySnowball extends SnowballItem {
         );
 
         if (!level.isClientSide) {
+
+            //velocity　初速
+            //inaccuracy ばらつき
             EntityMySnowball entity = new EntityMySnowball(level, playerIn);
             entity.shootFromRotation(playerIn, playerIn.xRotO, playerIn.yRotO, 0.0f, 1.5f, 1.0f);
             level.addFreshEntity(entity);
+
+            EntityMySnowball entity1 = new EntityMySnowball(level, playerIn);
+            entity1.shootFromRotation(playerIn, playerIn.xRotO, playerIn.yRotO, 2.0f, 1.5f, 1.0f);
+            level.addFreshEntity(entity1);
         }
 
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
