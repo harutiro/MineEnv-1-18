@@ -5,8 +5,15 @@ import com.example.examplemod.mc_02_fortuneblock.BlockFortune;
 import com.example.examplemod.mc_03_magicstick.ItemMagicStick;
 import com.example.examplemod.mc_04_hipotion.ItemHiPotion;
 import com.example.examplemod.mc_06_rainbowblock.BlockRainbow;
+import com.example.examplemod.mc_08_woodcut.BlockBreakEventHandler;
+import com.example.examplemod.mc_10_snowball_fight.EntityMySnowball;
+import com.example.examplemod.mc_10_snowball_fight.ItemMySnowball;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -41,17 +48,26 @@ public class ExampleMod {
 
     public static final Block BLOCK_RAINBOW = new BlockRainbow().setRegistryName(MODID, "block_rainbow");
 
+    // Entity
+    public static final EntityType<EntityMySnowball> ENTITY_MY_SNOWBALL =
+            EntityType.Builder.<EntityMySnowball>of(EntityMySnowball::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .build("my_snowball");
 
     // ここにItemを書いてね！
     public static final Item ITEM_MAGIC_STICK = new ItemMagicStick().setRegistryName(MODID, "magic_stick");
 
     public static final Item ITEM_HI_POTION = new ItemHiPotion().setRegistryName(MODID, "hi_potion");
 
+    public static final Item ITEM_MY_SNOWBALL = new ItemMySnowball().setRegistryName(MODID, "my_snowball");
+
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -59,7 +75,7 @@ public class ExampleMod {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-
+        EntityRenderers.register(ENTITY_MY_SNOWBALL, ThrownItemRenderer::new);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -76,6 +92,7 @@ public class ExampleMod {
                 // ここにItemを書いてね！
                 ITEM_MAGIC_STICK,
                 ITEM_HI_POTION,
+                ITEM_MY_SNOWBALL,
         };
 
         @SubscribeEvent
@@ -90,7 +107,7 @@ public class ExampleMod {
 
         @SubscribeEvent
         public static void onEntitiesRegistry(final RegistryEvent.Register<EntityType<?>> event) {
-
+            event.getRegistry().register(ENTITY_MY_SNOWBALL.setRegistryName(MODID, "my_snowball"));
         }
 
         // ======================================================================================================
