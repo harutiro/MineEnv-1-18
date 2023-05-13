@@ -17,11 +17,13 @@ public class BlockRainbow extends Block {
         // このブロックの性質を設定する
         //最後はブロックの強度
         super(Block.Properties.of(Material.STONE).strength(10f));
+        // ブロックの状態を設定する
         this.registerDefaultState(this.stateDefinition.any().setValue(COLOR, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        // ブロックの状態を定義する
         builder.add(COLOR);
     }
 
