@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "power=0": {
+      "model": "examplemod:block/block_redstone_0"
+    },
+    "power=1": {
+      "model": "examplemod:block/block_redstone_1"
+    },
+    "power=2": {
+      "model": "examplemod:block/block_redstone_2"
+    },
+    "power=3": {
+      "model": "examplemod:block/block_redstone_3"
+    }
+  }
+}
