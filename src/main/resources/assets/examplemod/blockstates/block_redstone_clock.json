@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "redstone_clock=false": {
+      "model": "examplemod:block/block_redstone_off"
+    },
+    "redstone_clock=true": {
+      "model": "examplemod:block/block_redstone_on"
+    }
+  }
+}
