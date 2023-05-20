@@ -12,6 +12,7 @@ import com.example.examplemod.mc_09_redstone.BlockRedstoneClock;
 import com.example.examplemod.mc_09_redstone.BlockRedstoneInput;
 import com.example.examplemod.mc_10_snowball_fight.EntityMySnowball;
 import com.example.examplemod.mc_10_snowball_fight.ItemMySnowball;
+import com.example.examplemod.mc_11_footprints_sand.BlockFootprintsSand;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -61,6 +62,8 @@ public class ExampleMod {
     public static final Block BLOCK_REDSTONE_INPUT = new BlockRedstoneInput().setRegistryName(MODID, "block_redstone_input");
     public static final Block BLOCK_REDSTONE_CLOCK = new BlockRedstoneClock().setRegistryName(MODID, "block_redstone_clock");
 
+    public static final Block BLOCK_FOOTPRINTS_SAND = new BlockFootprintsSand().setRegistryName(MODID, "block_footprints_sand");
+
     // Entity
     public static final EntityType<EntityMySnowball> ENTITY_MY_SNOWBALL =
             EntityType.Builder.<EntityMySnowball>of(EntityMySnowball::new, MobCategory.MISC)
@@ -106,6 +109,7 @@ public class ExampleMod {
                 new RegisterBlockData(BLOCK_SOUND),
                 new RegisterBlockData(BLOCK_REDSTONE_INPUT),
                 new RegisterBlockData(BLOCK_REDSTONE_CLOCK),
+                new RegisterBlockData(BLOCK_FOOTPRINTS_SAND),
 
         };
 
