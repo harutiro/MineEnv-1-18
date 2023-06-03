@@ -18,6 +18,8 @@ import com.example.examplemod.mc_12_biome.MyBiomeProvider;
 import com.example.examplemod.mc_13_explosive_arrow.EntityExplosiveArrow;
 import com.example.examplemod.mc_13_explosive_arrow.ItemExplosiveArrow;
 import com.example.examplemod.mc_13_explosive_arrow.RenderExplosiveArrow;
+import com.example.examplemod.mc_14_bull_fighting.EntityBull;
+import com.example.examplemod.mc_14_bull_fighting.RenderBull;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -31,6 +33,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.BiomeDictionary;
@@ -104,6 +107,22 @@ public class ExampleMod {
                     .setShouldReceiveVelocityUpdates(true)
                     .build("explosive_arrow");
 
+    // 牛のEntiyを設定
+    public static final EntityType<EntityBull> ENTITY_BULL =
+            EntityType.Builder.of(EntityBull::new, MobCategory.CREATURE)
+                    .sized(0.9f, 1.4f)
+                    .setTrackingRange(32) // 描画する範囲を指定する
+                    .setShouldReceiveVelocityUpdates(true)
+                    .build("bull");
+    //スポーンエッグを設定
+    public static final Item BULL_SPAWN_EGG =
+            new SpawnEggItem(
+                    ENTITY_BULL,
+                    0x00FF00, // スポーンエッグの色を設定する
+                    0x0000ff,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)
+            ).setRegistryName(MODID, "bull_spawn_egg");
+
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
@@ -121,6 +140,9 @@ public class ExampleMod {
 
         //　やのテクスチャを登録する
         EntityRenderers.register(ENTITY_EXPLOSIVE_ARROW, RenderExplosiveArrow::new);
+
+        // 牛のテクスチャを登録する
+        EntityRenderers.register(ENTITY_BULL, RenderBull::new);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -146,6 +168,7 @@ public class ExampleMod {
                 ITEM_TEST_SWORD,
                 ITEM_MY_SWORD,
                 ITEM_EXPLOSIVE_ARROW,
+                BULL_SPAWN_EGG,
         };
 
         @SubscribeEvent
@@ -167,7 +190,7 @@ public class ExampleMod {
 
         @SubscribeEvent
         public static void onAttributeCreation(final EntityAttributeCreationEvent event) {
-
+            event.put(ENTITY_BULL, EntityBull.registerAttributes().build());
         }
 
         @SubscribeEvent
@@ -176,6 +199,9 @@ public class ExampleMod {
 
             // 作ったやを登録する
             event.getRegistry().register(ENTITY_EXPLOSIVE_ARROW.setRegistryName(MODID, "explosive_arrow"));
+
+            // 牛を登録する
+            event.getRegistry().register(ENTITY_BULL.setRegistryName(MODID, "bull"));
         }
 
         // ======================================================================================================
