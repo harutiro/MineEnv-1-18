@@ -15,6 +15,9 @@ import com.example.examplemod.mc_10_snowball_fight.ItemMySnowball;
 import com.example.examplemod.mc_11_footprints_sand.BlockFootprintsSand;
 import com.example.examplemod.mc_12_biome.BiomeMyBiome;
 import com.example.examplemod.mc_12_biome.MyBiomeProvider;
+import com.example.examplemod.mc_13_explosive_arrow.EntityExplosiveArrow;
+import com.example.examplemod.mc_13_explosive_arrow.ItemExplosiveArrow;
+import com.example.examplemod.mc_13_explosive_arrow.RenderExplosiveArrow;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -89,8 +92,17 @@ public class ExampleMod {
 
     public static final Item ITEM_MY_SWORD = new ItemMySword().setRegistryName(MODID, "my_sword");
 
+    public static final Item ITEM_EXPLOSIVE_ARROW = new ItemExplosiveArrow().setRegistryName(MODID, "explosive_arrow");
+
     // Biome
     public static final ResourceKey<Biome> MY_BIOME = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ExampleMod.MODID, "my_biome"));
+
+    //　BomArrow
+    public static final EntityType<EntityExplosiveArrow> ENTITY_EXPLOSIVE_ARROW =
+            EntityType.Builder.<EntityExplosiveArrow>of(EntityExplosiveArrow::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .build("explosive_arrow");
 
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -106,6 +118,9 @@ public class ExampleMod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         EntityRenderers.register(ENTITY_MY_SNOWBALL, ThrownItemRenderer::new);
+
+        //　やのテクスチャを登録する
+        EntityRenderers.register(ENTITY_EXPLOSIVE_ARROW, RenderExplosiveArrow::new);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -130,6 +145,7 @@ public class ExampleMod {
                 ITEM_MY_SNOWBALL,
                 ITEM_TEST_SWORD,
                 ITEM_MY_SWORD,
+                ITEM_EXPLOSIVE_ARROW,
         };
 
         @SubscribeEvent
@@ -157,6 +173,9 @@ public class ExampleMod {
         @SubscribeEvent
         public static void onEntitiesRegistry(final RegistryEvent.Register<EntityType<?>> event) {
             event.getRegistry().register(ENTITY_MY_SNOWBALL.setRegistryName(MODID, "my_snowball"));
+
+            // 作ったやを登録する
+            event.getRegistry().register(ENTITY_EXPLOSIVE_ARROW.setRegistryName(MODID, "explosive_arrow"));
         }
 
         // ======================================================================================================
