@@ -20,6 +20,9 @@ import com.example.examplemod.mc_13_explosive_arrow.ItemExplosiveArrow;
 import com.example.examplemod.mc_13_explosive_arrow.RenderExplosiveArrow;
 import com.example.examplemod.mc_14_bull_fighting.EntityBull;
 import com.example.examplemod.mc_14_bull_fighting.RenderBull;
+import com.example.examplemod.mc_15_tobisuke.EntityTobisuke;
+import com.example.examplemod.mc_15_tobisuke.ModelTobisuke;
+import com.example.examplemod.mc_15_tobisuke.RenderTobisuke;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -36,6 +39,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -123,12 +127,30 @@ public class ExampleMod {
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)
             ).setRegistryName(MODID, "bull_spawn_egg");
 
+    // とびすけの設定
+    public static final EntityType<EntityTobisuke> ENTITY_TOBISUKE =
+            EntityType.Builder.of(EntityTobisuke::new, MobCategory.CREATURE)
+                    .sized(0.9f, 0.9f)
+                    .setTrackingRange(32)
+                    .setUpdateInterval(1)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .build("tobisuke");
+
+    public static final Item TOBISUKE_SPAWN_EGG =
+            new SpawnEggItem(
+                    ENTITY_TOBISUKE,
+                    0xFF0000,
+                    0x00FF00,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)
+            ).setRegistryName(MODID, "tobisuke_spawn_egg");
+
     public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new BlockBreakEventHandler());
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -143,6 +165,9 @@ public class ExampleMod {
 
         // 牛のテクスチャを登録する
         EntityRenderers.register(ENTITY_BULL, RenderBull::new);
+
+        // とびすけのテクスチャを登録する
+        EntityRenderers.register(ENTITY_TOBISUKE, RenderTobisuke::new);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -169,6 +194,7 @@ public class ExampleMod {
                 ITEM_MY_SWORD,
                 ITEM_EXPLOSIVE_ARROW,
                 BULL_SPAWN_EGG,
+                TOBISUKE_SPAWN_EGG,
         };
 
         @SubscribeEvent
@@ -191,6 +217,9 @@ public class ExampleMod {
         @SubscribeEvent
         public static void onAttributeCreation(final EntityAttributeCreationEvent event) {
             event.put(ENTITY_BULL, EntityBull.registerAttributes().build());
+
+            // とびすけの属性を登録する
+            event.put(ENTITY_TOBISUKE, EntityTobisuke.registerAttributes().build());
         }
 
         @SubscribeEvent
@@ -202,6 +231,10 @@ public class ExampleMod {
 
             // 牛を登録する
             event.getRegistry().register(ENTITY_BULL.setRegistryName(MODID, "bull"));
+
+            // とびすけを登録する
+            event.getRegistry().register(ENTITY_TOBISUKE.setRegistryName(MODID, "tobisuke"));
+            ForgeHooksClient.registerLayerDefinition(RenderTobisuke.modelLayerLocation, ModelTobisuke::createLayer);
         }
 
         // ======================================================================================================
