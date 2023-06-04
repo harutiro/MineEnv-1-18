@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "water=false": {
+      "model": "examplemod:block/block_sundo_pot"
+    },
+    "water=true": {
+      "model": "examplemod:block/block_sundo_pot_water"
+    }
+  }
+}

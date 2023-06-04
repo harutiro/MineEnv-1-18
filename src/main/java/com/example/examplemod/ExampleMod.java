@@ -25,6 +25,7 @@ import com.example.examplemod.mc_15_tobisuke.ModelOriginalTobisuke;
 import com.example.examplemod.mc_15_tobisuke.ModelTobisuke;
 import com.example.examplemod.mc_15_tobisuke.RenderTobisuke;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
+import com.example.examplemod.ramen_mod.block.BlockSundo;
 import com.example.examplemod.ramen_mod.item.ItemNoodle;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -82,6 +83,8 @@ public class ExampleMod {
     public static final Block BLOCK_REDSTONE_CLOCK = new BlockRedstoneClock().setRegistryName(MODID, "block_redstone_clock");
 
     public static final Block BLOCK_FOOTPRINTS_SAND = new BlockFootprintsSand().setRegistryName(MODID, "block_footprints_sand");
+
+    public static final Block BLOCK_SUNDO_POT = new BlockSundo().setRegistryName(MODID, "block_sundo_pot");
 
     // Entity
     public static final EntityType<EntityMySnowball> ENTITY_MY_SNOWBALL =
@@ -186,6 +189,7 @@ public class ExampleMod {
                 new RegisterBlockData(BLOCK_REDSTONE_INPUT),
                 new RegisterBlockData(BLOCK_REDSTONE_CLOCK),
                 new RegisterBlockData(BLOCK_FOOTPRINTS_SAND),
+                new RegisterBlockData(BLOCK_SUNDO_POT),
 
         };
 
