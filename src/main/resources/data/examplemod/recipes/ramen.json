@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ADF",
+    "BEF",
+    " C "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:cooked_porkchop"
+    },
+    "B": {
+      "item": "minecraft:bamboo"
+    },
+    "C": {
+      "item": "examplemod:ramen_bowl"
+    },
+    "D": {
+      "item": "examplemod:noodle"
+    },
+    "E": {
+      "item": "minecraft:cooked_chicken"
+    },
+    "F": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "examplemod:ramen",
+    "count": 1
+  }
+}

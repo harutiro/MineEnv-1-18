@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "A  ",
-    " A ",
-    "  A"
+    "A A",
+    "A A",
+    " A "
   ],
   "key": {
     "A": {
-      "item": "minecraft:wheat"
+      "item": "minecraft:brick"
     }
   },
   "result": {
-    "item": "examplemod:dry_noodle",
+    "item": "examplemod:ramen_bowl",
     "count": 1
   }
 }

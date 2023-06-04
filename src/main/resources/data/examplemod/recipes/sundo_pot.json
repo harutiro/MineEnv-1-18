@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "A  ",
-    " A ",
-    "  A"
+    "A A",
+    "A A",
+    " A "
   ],
   "key": {
     "A": {
-      "item": "minecraft:wheat"
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {
-    "item": "examplemod:dry_noodle",
+    "item": "examplemod:block_sundo_pot",
     "count": 1
   }
 }
