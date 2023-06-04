@@ -25,6 +25,7 @@ import com.example.examplemod.mc_15_tobisuke.ModelOriginalTobisuke;
 import com.example.examplemod.mc_15_tobisuke.ModelTobisuke;
 import com.example.examplemod.mc_15_tobisuke.RenderTobisuke;
 import com.example.examplemod.mc_16_buildingblock.BlockBuilding;
+import com.example.examplemod.ramen_mod.item.ItemNoodle;
 import com.example.examplemod.test.ItemTestSword;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -101,6 +102,8 @@ public class ExampleMod {
     public static final Item ITEM_MY_SWORD = new ItemMySword().setRegistryName(MODID, "my_sword");
 
     public static final Item ITEM_EXPLOSIVE_ARROW = new ItemExplosiveArrow().setRegistryName(MODID, "explosive_arrow");
+
+    public static final Item ITEM_NOODLE = new ItemNoodle().setRegistryName(MODID, "noodle");
 
     // Biome
     public static final ResourceKey<Biome> MY_BIOME = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ExampleMod.MODID, "my_biome"));
@@ -196,6 +199,7 @@ public class ExampleMod {
                 ITEM_EXPLOSIVE_ARROW,
                 BULL_SPAWN_EGG,
                 TOBISUKE_SPAWN_EGG,
+                ITEM_NOODLE,
         };
 
         @SubscribeEvent
