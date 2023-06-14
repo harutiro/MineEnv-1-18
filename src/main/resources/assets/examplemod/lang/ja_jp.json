@@ -1,4 +1,9 @@
 {
   "block.examplemod.block_myblock": "マイブロック",
-  "item.examplemod.noodle": "麺"
+  "item.examplemod.noodle": "麺",
+  "item.examplemod.ramen": "ラーメン",
+  "item.examplemod.ramen_bowl": "ラーメンどんぶり",
+  "item.examplemod.water_noodle": "水が切れていない麺",
+  "item.examplemod.dry_noodle": "乾燥麺",
+  "block.examplemod.block_sundo_pot": "寸胴鍋"
 }
